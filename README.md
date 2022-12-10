@@ -1,4 +1,4 @@
-# drawing-board
+# Drawing Board
 Simple responsive drawing board that works on desktop and mobile, with pyramid + brush tool, color and size change, and undo functionality.
 
 # Demo
