@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>Vite + TS</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="tools-actions">
+        <div class="tools">
+          <button id="undo">&#x27F2;</button>
+          <button id="size" data-size="4" class="selected">
+            <div class="dot" style="--size: 4px"></div>
+          </button>
+          <button id="size" data-size="6">
+            <div class="dot" style="--size: 6px"></div>
+          </button>
+          <button id="size" data-size="8">
+            <div class="dot" style="--size: 8px"></div>
+          </button>
+          <button id="size" data-size="10">
+            <div class="dot" style="--size: 10px"></div>
+          </button>
+          <button>
+            <input type="color" id="color" value="#FFFFFF" />
+          </button>
+          <button class="pyramid mode-class" id="mode" data-mode="pyramid">
+            🛕
+          </button>
+          <button class="pen selected mode-class" id="mode" data-mode="pen">
+            🖊️
+          </button>
+          <button class="eraser mode-class" id="mode" data-mode="eraser">
+            🧹
+          </button>
+        </div>
+        <br />
+        <div class="actions">
+          <button class="clear mode-class" id="clear">🗑️</button>
+          <button class="clear mode-class" id="save">📥</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
