@@ -1,6 +1,6 @@
 # Drawing Board
 
-Simple responsive drawing board that works on desktop and mobile, with pyramid + brush + text tool, color and size change, and undo functionality.
+Simple responsive drawing board that works on desktop and mobile, with pyramid + brush + text tool, color and size change, undo functionality, and a lot of bugs.
 
 # Demo
 
