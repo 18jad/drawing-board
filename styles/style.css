@@ -132,3 +132,14 @@ button:first-child {
     border-bottom-right-radius: 0;
   }
 }
+
+#tbox {
+  position: absolute;
+  background: var(---backdrop1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--light);
+  font-size: 17px;
+  border: 2px solid var(--border);
+  display: none;
+}
