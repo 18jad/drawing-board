@@ -7,6 +7,8 @@ export class Board {
   private cachedLines: Array<ILineCache> = [];
   private drawProperties: IDrawProperties;
   private bounding: DOMRect;
+  private inputBox: HTMLInputElement;
+  private form: HTMLFormElement;
 
   constructor(public width: number, public height: number) {
     this.width = width;
@@ -22,6 +24,11 @@ export class Board {
       shadowColor: "rgba(255, 255, 255, 0.3)",
       mode: "pen",
     };
+    // @ts-ignore - to get the input box
+    this.inputBox = document.getElementById("tbox");
+
+    // @ts-ignore - to get the input form
+    this.form = document.querySelector("form");
   }
 
   public init() {
@@ -40,6 +47,19 @@ export class Board {
     this.canvas.addEventListener("touchstart", this.mouseDown.bind(this));
     this.canvas.addEventListener("touchend", this.mouseUp.bind(this));
     this.canvas.addEventListener("touchmove", this.mouseMove.bind(this));
+
+    this.form.addEventListener("submit", (e: any) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.ctx.font = "24px Arial";
+      this.ctx.fillStyle = this.drawProperties.color;
+      this.ctx.fillText(this.inputBox.value, this.mouse.x, this.mouse.y);
+      this.hideInput();
+    });
+
+    this.inputBox.addEventListener("focusout", () => {
+      this.hideInput();
+    });
   }
 
   private mouseMove(event: MouseEvent | TouchEvent) {
@@ -62,6 +82,14 @@ export class Board {
   private mouseDown(event: MouseEvent | TouchEvent) {
     this.mouse.down = true;
     this.updateCursor(event);
+
+    if (this.drawProperties.mode === "text") {
+      this.inputBox.focus();
+      this.inputBox.style.display = "block";
+      this.inputBox.style.top = this.mouse.y + "px";
+      this.inputBox.style.left = this.mouse.x + "px";
+      return;
+    }
 
     this.cachedLines.push([
       {
@@ -171,8 +199,9 @@ export class Board {
       case "pyramid":
         this.drawPyramid(event);
         break;
-      default:
+      case "eraser":
         this.drawLine(event);
+      default:
         break;
     }
     this.ctx.globalCompositeOperation = "source-over";
@@ -255,5 +284,10 @@ export class Board {
     this.height = height;
     this.bounding = this.canvas.getBoundingClientRect();
     this.drawCachedLines();
+  }
+
+  private hideInput() {
+    this.inputBox.style.display = "none";
+    this.inputBox.value = "";
   }
 }
