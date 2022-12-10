@@ -51,7 +51,7 @@ export class Board {
     this.form.addEventListener("submit", (e: any) => {
       e.preventDefault();
       e.stopPropagation();
-      this.ctx.font = "24px Arial";
+      this.ctx.font = "20px Arial";
       this.ctx.fillStyle = this.drawProperties.color;
       this.ctx.fillText(this.inputBox.value, this.mouse.x, this.mouse.y);
       this.hideInput();
@@ -88,6 +88,9 @@ export class Board {
       this.inputBox.style.display = "block";
       this.inputBox.style.top = this.mouse.y + "px";
       this.inputBox.style.left = this.mouse.x + "px";
+      setTimeout(() => {
+        this.inputBox.focus();
+      }, 10);
       return;
     }
 
